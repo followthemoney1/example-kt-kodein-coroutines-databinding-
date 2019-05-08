@@ -1,41 +1,59 @@
 package pc.dd.test.manager
 
-import android.util.Log
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import pc.dd.test.data.UserResponse
 import pc.dd.test.interfaces.GitResponse
-import retrofit2.Retrofit
-import UserResponse
-import pc.dd.test.data.User
+import pc.dd.test.util.safeApiCall
+import java.io.IOException
+import pc.dd.test.data.main.Result
 
 class NetworkManager{
-    val gitResponse:GitResponse = GitResponse.create()
+   private val gitResponse: GitResponse = GitResponse.create()
+//
+//    fun getUsersByFollowers( onUpdate: (UserResponse) -> Unit, onError: (Any) -> Unit ){
+//       val resultObservable =
+//           gitResponse.getAllUsersConstant()
+//           .observeOn(AndroidSchedulers.mainThread())
+//           .subscribeOn(Schedulers.io())
+//           .subscribe ({
+//                   result ->
+//                Log.e(this.javaClass.name, result.toString())
+//               onUpdate(result)
+//           }, { error ->
+//               onError(error)
+//           })
+//    }
+//
+//    fun getUserByNickName(nick: String, onUpdate: (User) -> Unit, onError: (Any) -> Unit){
+//        val resultObservable =
+//            gitResponse.getUserByUsername(nick)
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribeOn(Schedulers.io())
+//                .subscribe ({
+//                        result ->
+//                    Log.e(this.javaClass.name, result.toString())
+//                    onUpdate(result)
+//                }, { error ->
+//                    onError(error)
+//                })
+//    }
 
-    fun getUsersByFollowers( onUpdate: (UserResponse) -> Unit, onError: (Any) -> Unit ){
-       val resultObservable =
-           gitResponse.getAllUsersConstant()
-           .observeOn(AndroidSchedulers.mainThread())
-           .subscribeOn(Schedulers.io())
-           .subscribe ({
-                   result ->
-                Log.e(this.javaClass.name, result.toString())
-               onUpdate(result)
-           }, { error ->
-               onError(error)
-           })
-    }
+    suspend fun searchUsers() = safeApiCall(
+        call = {
+            searchUserByFollowers()
+        },
+        errorMessage = "Error get user data"
+    )
 
-    fun getUserByNickName(nick: String, onUpdate: (User) -> Unit, onError: (Any) -> Unit){
-        val resultObservable =
-            gitResponse.getUserByUsername(nick)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe ({
-                        result ->
-                    Log.e(this.javaClass.name, result.toString())
-                    onUpdate(result)
-                }, { error ->
-                    onError(error)
-                })
+    private suspend fun searchUserByFollowers():  Result<UserResponse> {
+        val response = gitResponse.userListByFollowersAsync().await()
+        if (response.isSuccessful) {
+            val body = response.body()
+            if (body != null) {
+                return Result.Success(body)
+            }
+        }
+        return Result.Error(
+            IOException("Error getting github data ${response.code()} ${response.message()}")
+        )
     }
 }
