@@ -7,4 +7,4 @@ data class UserResponse(@SerializedName("total_count")
                         @SerializedName("incomplete_results")
                         val incompleteResults: Boolean = false,
                         @SerializedName("items")
-                        val items: List<ItemsItem>?)
+                        val items: List<ItemsItem> = emptyList())

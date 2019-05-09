@@ -13,11 +13,9 @@ class DataManager {
 
     fun getUsersAsync(onSuccess: (UserResponse) -> Unit, onError: (String) -> Unit) = bgScope.launch {
             val result = networkManager.searchUsers()
-            mainScope.launch {
                 when (result) {
                     is Result.Success -> onSuccess(result.data)
                     is Result.Error -> onError(result.exception.localizedMessage)
                 }.exhaustive
-            }
         }
 }

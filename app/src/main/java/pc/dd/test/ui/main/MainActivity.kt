@@ -1,47 +1,45 @@
 package pc.dd.test.ui.main
 
-import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.support.v7.app.AppCompatActivity
+import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import pc.dd.test.R
 import pc.dd.test.adapter.UserAdapter
-import pc.dd.test.interfaces.MainViewImnetface
-import android.support.v7.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_main.*
-import pc.dd.test.data.ItemsItem
-import pc.dd.test.data.UserResponse
+import pc.dd.test.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity(), MainViewImnetface {
+//TODO: remove this after stable version,
+//MARK: for custom method
+//@BindingMethods(value = [
+//    BindingMethod(
+//        type = RecyclerView::class,
+//        attribute = "app:set_items",
+//        method = "setItems")])
 
-    private lateinit var viewModel: MainViewModel
+class MainActivity : AppCompatActivity() {
 
-    private var userAdapter: UserAdapter = UserAdapter {
+    private val mainViewModel by lazy {
+        ViewModelProviders.of(this)
+            .get(MainViewModel::class.java)
+    }
+    private val userAdapter by lazy {
+        UserAdapter {
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewModel = ViewModelProviders.of(this, MainViewModelFactory(this))
-            .get(MainViewModel::class.java)
+        //TODO:using databining for view
+        val binding: ActivityMainBinding =
+            DataBindingUtil
+                .setContentView<ActivityMainBinding>(this, R.layout.activity_main).apply {
+                    adapter = userAdapter
+                    viewModel = mainViewModel
+                }
+        binding.lifecycleOwner = this
 
-        viewModel.users.observe(this, Observer {
-            onUserUpdate(it!!)
-        })
     }
-
-    override fun initViews() {
-        recycleView.apply {
-            layoutManager = LinearLayoutManager(context).apply { orientation = LinearLayoutManager.VERTICAL }
-            adapter = userAdapter
-        }
-    }
-
-    override fun onUserUpdate(response: UserResponse) {
-        userAdapter.users = response.items!!
-        userAdapter.notifyDataSetChanged()
-    }
-
 
 }

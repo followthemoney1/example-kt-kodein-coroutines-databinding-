@@ -10,15 +10,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface GitResponse {
-//    @GET("/search/users")
-//    fun userListByFollowers( @Query("q") q: String, @Query("sort") sort: String,@Query("order") order: String): Object
-//
-//    @GET("/search/users?q=followers:>1000&sort=contributions&order=desc")
-//    fun getAllUsersConstant(): Observable<UserResponse>
-//
-//    @GET("/users/{username}")
-//    fun getUserByUsername(@Path("username") username:String) : Observable<User>
-//
 
     @GET("/search/users")
     fun userListByFollowersAsync(
