@@ -8,34 +8,6 @@ import pc.dd.test.data.main.Result
 
 class NetworkManager{
    private val gitResponse: GitResponse = GitResponse.create()
-//
-//    fun getUsersByFollowers( onUpdate: (UserResponse) -> Unit, onError: (Any) -> Unit ){
-//       val resultObservable =
-//           gitResponse.getAllUsersConstant()
-//           .observeOn(AndroidSchedulers.mainThread())
-//           .subscribeOn(Schedulers.io())
-//           .subscribe ({
-//                   result ->
-//                Log.e(this.javaClass.name, result.toString())
-//               onUpdate(result)
-//           }, { error ->
-//               onError(error)
-//           })
-//    }
-//
-//    fun getUserByNickName(nick: String, onUpdate: (User) -> Unit, onError: (Any) -> Unit){
-//        val resultObservable =
-//            gitResponse.getUserByUsername(nick)
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribeOn(Schedulers.io())
-//                .subscribe ({
-//                        result ->
-//                    Log.e(this.javaClass.name, result.toString())
-//                    onUpdate(result)
-//                }, { error ->
-//                    onError(error)
-//                })
-//    }
 
     suspend fun searchUsers() = safeApiCall(
         call = {
@@ -57,3 +29,18 @@ class NetworkManager{
         )
     }
 }
+
+
+//    fun getUserByNickName(nick: String, onUpdate: (User) -> Unit, onError: (Any) -> Unit){
+//        val resultObservable =
+//            gitResponse.getUserByUsername(nick)
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribeOn(Schedulers.io())
+//                .subscribe ({
+//                        result ->
+//                    Log.e(this.javaClass.name, result.toString())
+//                    onUpdate(result)
+//                }, { error ->
+//                    onError(error)
+//                })
+//    }
