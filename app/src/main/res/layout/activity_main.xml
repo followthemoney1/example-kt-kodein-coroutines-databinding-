@@ -12,7 +12,6 @@
                   type="pc.dd.test.adapter.UserAdapter"/>
 
         <variable name="viewModel" type="MainViewModel"/>
-
         <!--
         OR U CAN TRY USE LIVE DATA
         <variable-->
