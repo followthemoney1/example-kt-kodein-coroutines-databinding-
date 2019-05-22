@@ -1,4 +1,4 @@
-package pc.dd.test.ui.main
+package pc.dd.test.ui.activities.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,8 +6,7 @@ import androidx.lifecycle.ViewModel
 import pc.dd.test.data.UserResponse
 import pc.dd.test.manager.DataManager
 
-class MainViewModel : ViewModel() {
-    private val dataManager: DataManager = DataManager()
+class MainViewModel(val dataManager: DataManager) : ViewModel() {
 
     private val _users = MutableLiveData<UserResponse>()
     val users: LiveData<UserResponse>
