@@ -1,4 +1,4 @@
-package pc.dd.test.data.main
+package pc.dd.test.data.objects.main
 
 sealed class Result<out T : Any> {
 

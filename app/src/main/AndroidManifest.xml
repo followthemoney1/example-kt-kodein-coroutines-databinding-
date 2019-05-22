@@ -14,7 +14,7 @@
             android:supportsRtl="true"
             android:name='.App'
             android:theme="@style/AppTheme">
-        <activity android:name=".ui.UserLocationActivity">
+        <activity android:name=".ui.activities.location.UserLocationActivity">
         </activity>
         <activity android:name="pc.dd.test.ui.activities.main.MainActivity">
             <intent-filter>

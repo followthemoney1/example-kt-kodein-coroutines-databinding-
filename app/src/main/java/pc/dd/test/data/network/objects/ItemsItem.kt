@@ -1,4 +1,4 @@
-package pc.dd.test.data
+package pc.dd.test.data.network.objects
 
 import com.google.gson.annotations.SerializedName
 

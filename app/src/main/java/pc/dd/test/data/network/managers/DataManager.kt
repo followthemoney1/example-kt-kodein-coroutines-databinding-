@@ -1,14 +1,14 @@
-package pc.dd.test.manager
+package pc.dd.test.data.network.managers
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-import pc.dd.test.data.UserResponse
-import pc.dd.test.data.main.Result
+import pc.dd.test.data.network.objects.UserResponse
+import pc.dd.test.data.network.objects.main.Result
 import pc.dd.test.util.exhaustive
 
-class DataManager(val networkManager:NetworkManager) {
+class DataManager(val networkManager: NetworkManager) {
 
     private val parentJob = SupervisorJob()
     private val mainScope = CoroutineScope(Dispatchers.Main)

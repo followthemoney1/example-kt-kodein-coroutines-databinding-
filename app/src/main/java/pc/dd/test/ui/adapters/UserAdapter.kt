@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.view_one_user.view.*
 import pc.dd.test.R
-import pc.dd.test.data.ItemsItem
+import pc.dd.test.data.network.objects.ItemsItem
 import pc.dd.test.util.loadWithUrl
 
 class UserAdapter(
