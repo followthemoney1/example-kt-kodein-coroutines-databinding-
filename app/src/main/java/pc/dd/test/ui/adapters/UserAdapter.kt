@@ -1,10 +1,8 @@
-package pc.dd.test.adapter
+package pc.dd.test.ui.adapters
 
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.view_one_user.view.*
 import pc.dd.test.R
 import pc.dd.test.data.ItemsItem
@@ -13,7 +11,7 @@ import pc.dd.test.util.loadWithUrl
 class UserAdapter(
     var data: List<ItemsItem> = ArrayList(),
     var itemClick: ((item: ItemsItem) -> Unit?)? = null
-) : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
+) : androidx.recyclerview.widget.RecyclerView.Adapter<UserAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater
@@ -27,7 +25,7 @@ class UserAdapter(
     override fun getItemCount() = data.size
 
     class ViewHolder(view: View, private val itemClick: ((item: ItemsItem) -> Unit?)? = null) :
-        RecyclerView.ViewHolder(view) {
+        androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
 
         fun bindForecast(item: ItemsItem) {
             with(itemView){

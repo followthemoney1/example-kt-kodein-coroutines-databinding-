@@ -1,13 +1,12 @@
 package pc.dd.test.manager
 
 import pc.dd.test.data.UserResponse
+import pc.dd.test.data.main.Result
 import pc.dd.test.interfaces.GitResponse
 import pc.dd.test.util.safeApiCall
 import java.io.IOException
-import pc.dd.test.data.main.Result
 
-class NetworkManager{
-   private val gitResponse: GitResponse = GitResponse.create()
+class NetworkManager(val gitResponse: GitResponse) {
 
     suspend fun searchUsers() = safeApiCall(
         call = {

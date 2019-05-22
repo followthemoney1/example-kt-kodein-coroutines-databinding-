@@ -1,12 +1,14 @@
-package pc.dd.test.ui.main
+package pc.dd.test.ui.activities.main
 
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.kodein
 import pc.dd.test.R
-import pc.dd.test.adapter.UserAdapter
 import pc.dd.test.databinding.ActivityMainBinding
+import pc.dd.test.ui.adapters.UserAdapter
+import pc.dd.test.util.viewModel
 
 //TODO: remove this after stable version,
 //MARK: for custom method
@@ -16,12 +18,12 @@ import pc.dd.test.databinding.ActivityMainBinding
 //        attribute = "app:set_items",
 //        method = "setItems")])
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), KodeinAware {
 
-    private val mainViewModel by lazy {
-        ViewModelProviders.of(this)
-            .get(MainViewModel::class.java)
-    }
+    override val kodein by kodein()
+
+    private val mainViewModel:MainViewModel by viewModel()
+
     private val userAdapter by lazy {
         UserAdapter {
         }
@@ -38,6 +40,7 @@ class MainActivity : AppCompatActivity() {
                     adapter = userAdapter
                     viewModel = mainViewModel
                 }
+
         binding.lifecycleOwner = this
 
     }
