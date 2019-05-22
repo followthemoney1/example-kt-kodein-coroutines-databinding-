@@ -1,11 +1,11 @@
 package pc.dd.test.ui.main
 
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
+import androidx.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import pc.dd.test.R
-import pc.dd.test.adapter.UserAdapter
+import pc.dd.test.ui.adapters.UserAdapter
 import pc.dd.test.databinding.ActivityMainBinding
 
 //TODO: remove this after stable version,
