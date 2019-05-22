@@ -3,7 +3,7 @@ package pc.dd.test.util
 import androidx.databinding.BindingAdapter
 import android.widget.ImageView
 import pc.dd.test.ui.adapters.UserAdapter
-import pc.dd.test.data.UserResponse
+import pc.dd.test.data.network.objects.UserResponse
 
 @BindingAdapter(value = ["app:users", "app:adapter"], requireAll = true)
 fun setItems(view: androidx.recyclerview.widget.RecyclerView, items: UserResponse?, adapter: UserAdapter) {

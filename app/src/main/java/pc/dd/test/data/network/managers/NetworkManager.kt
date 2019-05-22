@@ -1,8 +1,8 @@
-package pc.dd.test.manager
+package pc.dd.test.data.network.managers
 
-import pc.dd.test.data.UserResponse
-import pc.dd.test.data.main.Result
-import pc.dd.test.interfaces.GitResponse
+import pc.dd.test.data.network.objects.UserResponse
+import pc.dd.test.data.network.objects.main.Result
+import pc.dd.test.data.network.interfaces.GitResponse
 import pc.dd.test.util.safeApiCall
 import java.io.IOException
 

@@ -4,7 +4,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <import type="androidx.lifecycle.LiveData" />
-        <import type="pc.dd.test.data.UserResponse"/>
+        <import type="pc.dd.test.data.network.objects.UserResponse"/>
         <import type="pc.dd.test.ui.activities.main.MainViewModel"/>
         <import type="pc.dd.test.R" />
 

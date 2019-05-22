@@ -1,9 +1,7 @@
 package pc.dd.test.util
 
-import kotlinx.coroutines.*
-import pc.dd.test.data.UserResponse
 import java.io.IOException
-import pc.dd.test.data.main.Result
+import pc.dd.test.data.network.objects.main.Result
 
 suspend fun <T : Any> safeApiCall(call: suspend () -> Result<T>, errorMessage: String): Result<T> {
     return try {

@@ -1,4 +1,4 @@
-package pc.dd.test.ui
+package pc.dd.test.ui.activities.location
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

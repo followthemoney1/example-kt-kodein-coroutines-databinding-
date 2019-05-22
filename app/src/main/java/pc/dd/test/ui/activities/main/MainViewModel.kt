@@ -3,8 +3,8 @@ package pc.dd.test.ui.activities.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import pc.dd.test.data.UserResponse
-import pc.dd.test.manager.DataManager
+import pc.dd.test.data.network.objects.UserResponse
+import pc.dd.test.data.network.managers.DataManager
 
 class MainViewModel(val dataManager: DataManager) : ViewModel() {
 
