@@ -5,7 +5,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import pc.dd.test.data.network.objects.UserResponse
-import pc.dd.test.data.network.objects.main.Result
+import pc.dd.test.data.objects.main.ResultResponse
 import pc.dd.test.util.exhaustive
 
 class DataManager(val networkManager: NetworkManager) {
@@ -17,8 +17,8 @@ class DataManager(val networkManager: NetworkManager) {
     fun getUsersAsync(onSuccess: (UserResponse) -> Unit, onError: (String) -> Unit) = bgScope.launch {
             val result = networkManager.searchUsers()
                 when (result) {
-                    is Result.Success -> onSuccess(result.data)
-                    is Result.Error -> onError(result.exception.localizedMessage)
+                    is ResultResponse.Success -> onSuccess(result.data)
+                    is ResultResponse.Error -> onError(result.exception.localizedMessage)
                 }.exhaustive
         }
 }

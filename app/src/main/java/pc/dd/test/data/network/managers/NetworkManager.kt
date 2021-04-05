@@ -1,8 +1,8 @@
 package pc.dd.test.data.network.managers
 
 import pc.dd.test.data.network.objects.UserResponse
-import pc.dd.test.data.network.objects.main.Result
 import pc.dd.test.data.network.interfaces.GitResponse
+import pc.dd.test.data.objects.main.ResultResponse
 import pc.dd.test.util.safeApiCall
 import java.io.IOException
 
@@ -15,15 +15,15 @@ class NetworkManager(val gitResponse: GitResponse) {
         errorMessage = "Error get user data"
     )
 
-    private suspend fun searchUserByFollowers():  Result<UserResponse> {
+    private suspend fun searchUserByFollowers(): ResultResponse<UserResponse> {
         val response = gitResponse.userListByFollowersAsync().await()
         if (response.isSuccessful) {
             val body = response.body()
             if (body != null) {
-                return Result.Success(body)
+                return ResultResponse.Success(body)
             }
         }
-        return Result.Error(
+        return ResultResponse.Error(
             IOException("Error getting github data ${response.code()} ${response.message()}")
         )
     }
